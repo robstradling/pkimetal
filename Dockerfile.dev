@@ -50,6 +50,7 @@ COPY . .
 RUN git describe --tags --always
 RUN git fetch --tags
 RUN git describe --tags --always
+RUN find
 ENV GOPATH=/app
 RUN CGO_ENABLED=1 GOOS=linux go build -modfile=dev_go.mod -o pkimetal -ldflags " \
 	-X github.com/pkimetal/pkimetal/config.BuildTimestamp=`date --utc +%Y-%m-%dT%H:%M:%SZ` \
