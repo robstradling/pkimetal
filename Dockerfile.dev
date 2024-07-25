@@ -48,7 +48,7 @@ RUN git clone https://github.com/kroeckx/x509lint && \
 WORKDIR /app
 COPY . .
 RUN git describe --tags --always
-RUN git fetch --tags
+RUN git pull -t
 RUN git describe --tags --always
 RUN find
 ENV GOPATH=/app
