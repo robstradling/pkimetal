@@ -10,7 +10,7 @@ RUN apk add --no-cache --update \
 	gmp-dev mpfr-dev mpc1-dev py3-cryptography \
 	gmp mpfr mpc1 \
 	# badkeys, ftfy, and pkilint.
-	pipx \
+	pipx pip \
 	# certlint.
 	ruby ruby-dev \
 	# pkilint (for pyasn1-fasder).
@@ -50,6 +50,7 @@ RUN git fetch --depth=2147483647 && \
 	poetry lock && \
 	poetry bundle venv -vvv --python=/usr/bin/python3 --only=main /usr/local/pkimetal/badkeys && \
 	cp badkeys-cli /usr/local/pkimetal/badkeys/bin && \
+	pip wheel --no-cache-dir --use-pep517 "gmpy2 (==2.2.1)" && \
 	# Build certlint.
 	cd /usr/local/pkimetal/certlint/ext && \
 	ruby extconf.rb && \
