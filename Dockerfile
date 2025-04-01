@@ -7,7 +7,7 @@ RUN apk add --no-cache --update \
 	# Common.
 	g++ gcc git make musl-dev pkgconfig \
 	# badkeys (for rsakeys/fermat.py).
-	gmp-dev mpfr-dev mpc1-dev \
+	gmp-dev mpfr-dev mpc1-dev py3-cryptography \
 	gmp mpfr mpc1 \
 	# badkeys, ftfy, and pkilint.
 	pipx \
@@ -97,7 +97,7 @@ FROM alpine:edge AS runtime
 COPY --from=build /usr/local/pkimetal /usr/local/pkimetal
 RUN apk add --no-cache --update \
 	# badkeys (for rsakeys/fermat.py).
-	gmp mpfr mpc1 \
+	gmp mpfr mpc1 py3-cryptography \
 	# certlint.
 	ruby \
 	# pkilint and ftfy.
