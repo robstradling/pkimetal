@@ -7,7 +7,7 @@ RUN apk add --no-cache --update \
 	# Common.
 	g++ gcc git make musl-dev pkgconfig \
 	# badkeys (for rsakeys/fermat.py).
-	gmp-dev mpfr-dev mpc1-dev py3-cryptography \
+	gmp-dev mpfr-dev mpc1-dev py3-cryptography python3-dev \
 	gmp mpfr mpc1 \
 	# badkeys, ftfy, and pkilint.
 	pipx py3-pip \
