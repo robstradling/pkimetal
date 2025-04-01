@@ -7,10 +7,9 @@ RUN apk add --no-cache --update \
 	# Common.
 	g++ gcc git make musl-dev pkgconfig \
 	# badkeys (for rsakeys/fermat.py).
-	gmp-dev mpfr-dev mpc1-dev py3-cryptography python3-dev \
-	gmp mpfr mpc1 \
+	gmp-dev mpfr-dev mpc1-dev python3-dev \
 	# badkeys, ftfy, and pkilint.
-	pipx py3-pip \
+	pipx \
 	# certlint.
 	ruby ruby-dev \
 	# pkilint (for pyasn1-fasder).
@@ -47,9 +46,8 @@ RUN git fetch --depth=2147483647 && \
 	# Build badkeys.
 	cd /usr/local/build/badkeys && \
 	cp /app/linter/badkeys/pyproject.toml . && \
-	pip wheel --no-cache-dir --use-pep517 "gmpy2 (==2.2.1)" && \
 	poetry lock && \
-	poetry bundle venv -vvv --python=/usr/bin/python3 --only=main /usr/local/pkimetal/badkeys && \
+	poetry bundle venv --python=/usr/bin/python3 --only=main /usr/local/pkimetal/badkeys && \
 	cp badkeys-cli /usr/local/pkimetal/badkeys/bin && \
 	# Build certlint.
 	cd /usr/local/pkimetal/certlint/ext && \
@@ -98,7 +96,7 @@ FROM alpine:edge AS runtime
 COPY --from=build /usr/local/pkimetal /usr/local/pkimetal
 RUN apk add --no-cache --update \
 	# badkeys (for rsakeys/fermat.py).
-	gmp mpfr mpc1 py3-cryptography \
+	gmp mpfr mpc1 \
 	# certlint.
 	ruby \
 	# pkilint and ftfy.
