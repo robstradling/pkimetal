@@ -48,7 +48,7 @@ RUN git fetch --depth=2147483647 && \
 	cd /usr/local/build/badkeys && \
 	cp /app/linter/badkeys/pyproject.toml . && \
 	poetry lock && \
-	poetry bundle venv --python=/usr/bin/python3 --only=main /usr/local/pkimetal/badkeys && \
+	poetry bundle venv -vvv --python=/usr/bin/python3 --only=main /usr/local/pkimetal/badkeys && \
 	cp badkeys-cli /usr/local/pkimetal/badkeys/bin && \
 	# Build certlint.
 	cd /usr/local/pkimetal/certlint/ext && \
